@@ -25,7 +25,7 @@ public class GitHubSearchResource {
     @Produces(MediaType.APPLICATION_JSON)
     @PermitAll
     public GitHubSearchResult search(@Pattern(regexp = "5|10|50", flags = Pattern.Flag.CASE_INSENSITIVE)
-                                   @QueryParam("top") String top,
+                                   @QueryParam("top") @DefaultValue("5") String top,
                                      @QueryParam("city") @DefaultValue("Barcelona") String city) {
         TopSearchParam topSearchParam = parseParam(top);
         return searchService.searchTopUserByReposInCity(city, topSearchParam);
