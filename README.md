@@ -15,5 +15,7 @@ To see your applications health enter url `http://localhost:8081/healthcheck`
 
 ---
 How to call into the server
+The server is "protected" by Http Basic Authentication. The user and passowrd is "admin"
 
-http://localhost:8080/search/50 -X POST -H "Accept:application/json" -v
+To call the server with credentials, use the following (if using linux):
+curl -H "Accept:application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" "http://localhost:8080/search?top=5" -v

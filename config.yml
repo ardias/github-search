@@ -3,6 +3,6 @@ logging:
   loggers:
     org.ardias: DEBUG
 
-usersSearchUrl: https://api.github.com/search/users?q=location:Barcelona+sort:repositories&type=Users&per_page=
+usersSearchUrl: https://api.github.com/search/users?q=location:$CITY+sort:repositories&type=Users&per_page=$LIMIT
 
 

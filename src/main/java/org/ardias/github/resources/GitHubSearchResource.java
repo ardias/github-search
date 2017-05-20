@@ -1,14 +1,13 @@
 package org.ardias.github.resources;
 
+import org.ardias.github.core.GitHubSearchResult;
 import org.ardias.github.core.GitHubSearchService;
-import org.ardias.github.core.GitHubUser;
 import org.ardias.github.core.TopSearchParam;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.validation.constraints.Pattern;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Created by Antonio Dias on 18/05/2017.
@@ -22,11 +21,14 @@ public class GitHubSearchResource {
         this.searchService = searchService;
     }
 
-    @POST
-    @Path("/{top}")
-    public List<GitHubUser> search(@PathParam("top") @DefaultValue("5") String top) {
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @PermitAll
+    public GitHubSearchResult search(@Pattern(regexp = "5|10|50", flags = Pattern.Flag.CASE_INSENSITIVE)
+                                   @QueryParam("top") String top,
+                                     @QueryParam("city") @DefaultValue("Barcelona") String city) {
         TopSearchParam topSearchParam = parseParam(top);
-        return searchService.doSearch(topSearchParam);
+        return searchService.searchTopUserByReposInCity(city, topSearchParam);
     }
 
     private TopSearchParam parseParam(String top) {
