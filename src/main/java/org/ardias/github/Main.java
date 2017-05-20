@@ -12,6 +12,7 @@ import org.ardias.github.client.GitHubApiAdapter;
 import org.ardias.github.core.GitHubSearchService;
 import org.ardias.github.core.GitHubSearchServiceImpl;
 import org.ardias.github.db.InMemoryUseRepository;
+import org.ardias.github.health.GitHubHealthCheck;
 import org.ardias.github.resources.GitHubSearchResource;
 
 import javax.ws.rs.client.Client;
@@ -45,6 +46,8 @@ public class Main extends Application<MainConfig> {
                 new BasicCredentialAuthFilter.Builder<User>()
                         .setAuthenticator(new SimpleBasicAuthenticator(new InMemoryUseRepository()))
                         .buildAuthFilter()));
+        environment.healthChecks().register("gitHubStatus",
+                new GitHubHealthCheck(jerseyClient, mainConfig.getGitHubHealthCheckUrl()));
     }
 
 }

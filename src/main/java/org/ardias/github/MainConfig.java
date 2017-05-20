@@ -17,6 +17,9 @@ public class MainConfig extends Configuration {
     @Valid @NotNull
     private JerseyClientConfiguration jerseyClientConfiguration = new JerseyClientConfiguration();
 
+    @Valid @NotNull
+    private String gitHubHealthCheckUrl;
+
     public void setUsersSearchUrl(final String usersSearchUrl) {
         this.usersSearchUrl = usersSearchUrl;
     }
@@ -24,6 +27,11 @@ public class MainConfig extends Configuration {
     @JsonProperty("usersSearchUrl")
     public String getUsersSearchUrl() {
         return usersSearchUrl;
+    }
+
+    @JsonProperty("gitHubHealthCheckUrl")
+    public String getGitHubHealthCheckUrl() {
+        return gitHubHealthCheckUrl;
     }
 
     @JsonProperty("jerseyClient")

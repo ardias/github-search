@@ -3,7 +3,6 @@ package org.ardias.github.core;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.ardias.github.core.GitHubUser;
 
 import java.util.Arrays;
 

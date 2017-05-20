@@ -4,5 +4,5 @@ logging:
     org.ardias: DEBUG
 
 usersSearchUrl: https://api.github.com/search/users?q=location:$CITY+sort:repositories&type=Users&per_page=$LIMIT
-
+gitHubHealthCheckUrl: https://status.github.com/api/status.json
 
